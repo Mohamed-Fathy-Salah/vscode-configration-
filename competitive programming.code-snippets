@@ -132,5 +132,28 @@
 		"body": "freopen(\"out.txt\", \"w\", stdout);\n$0",
 		"description": "write",
 		"prefix": "w"
+	},
+	"digitdp": {
+		"prefix": "digitdp",
+		"body": [
+			"const int mod = 1e9+7;",
+			"int d;",
+			"string s;",
+			"vector<vector<vector<int>>> dp;",
+			"// dp.resize(s.size(),vector<vector<int>>(2,vector<int>(d,-1)));",
+			"//call with foo(0,0,0);",
+			"int foo(int i,bool f,int sm){",
+			"    if(i == s.size())return sm == 0;",
+			"    int &ret = dp[i][f][sm];",
+			"    if(~ret)return ret;",
+			"    int lmt = f?9:s[i]-'0';",
+			"    i++;",
+			"    ret = 0;",
+			"    for(int j=0;j<lmt;j++)",
+			"        ret = (ret+foo(i,1,(sm+j)%d))%mod;",
+			"    ret = (ret+foo(i,f,(sm+lmt)%d))%mod;",
+			"    return ret;",
+			"}"
+		]
 	}
 }
