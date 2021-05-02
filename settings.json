@@ -82,5 +82,21 @@
         "stdexcept": "cpp",
         "typeindex": "cpp",
         "variant": "cpp"
-    }
+    },
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 1521,
+            "driver": "MySQL",
+            "name": "mofasa",
+            "group": "mofasa",
+            "database": "mofasa",
+            "username": "USERNAME",
+            "password": "PASSWORD"
+        }
+    ]
 }
