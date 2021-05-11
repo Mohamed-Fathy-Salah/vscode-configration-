@@ -98,5 +98,6 @@
             "username": "USERNAME",
             "password": "PASSWORD"
         }
-    ]
+    ],
+    "editor.fontSize": 18
 }
