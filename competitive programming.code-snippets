@@ -276,5 +276,56 @@
 			"};"
 		],
 		"description": "sparse table"
+	},
+	"bridge": {
+		"prefix": "bridge",
+		"body": [
+			"const int N = 1e5 + 4;",
+			"int temp = 1;",
+			"vector<int> dfsnum(N, -1), lowlink(N, -1);",
+			"vector<vector<int>> g(N);",
+			"void bridge(int cur, int par) {",
+			"    dfsnum[cur] = lowlink[cur] = temp++;",
+			"    for (int &child : g[cur])",
+			"        if (child != par) {",
+			"            if (dfsnum[child] == -1) {",
+			"                bridge(child, cur);",
+			"                if (lowlink[child] > dfsnum[cur])",
+			"                    cout << cur << \" \" << child << endl;",
+			"            } else",
+			"                lowlink[cur] = min(lowlink[cur], dfsnum[child]);",
+			"        }",
+			"}",
+			""
+		],
+	},
+	"cutOffPoint": {
+		"prefix": "cutOffPoint",
+		"body": [
+			"const int N = 1e5 + 4;",
+			"int temp = 1, numOfNewNodesRootVisited = 0;",
+			"vector<int> dfsnum(N, -1), lowlink(N, -1);",
+			"vector<vector<int>> g(N);",
+			"set<int> artpts;",
+			"void cutpoint(int cur, int par) {",
+			"    dfsnum[cur] = lowlink[cur] = temp++;",
+			"    for (int &child : g[cur])",
+			"        if (child != par) {",
+			"            if (dfsnum[child] == -1) {",
+			"                cutpoint(child, cur);",
+			"                if (par == -1) numOfNewNodesRootVisited++;",
+			"                if (lowlink[child] >= dfsnum[cur]) {",
+			"                    if (par == -1) {",
+			"                        if (numOfNewNodesRootVisited > 1) artpts.insert(cur);",
+			"                    } else",
+			"                        artpts.insert(cur);",
+			"                    lowlink[cur] = min(lowlink[cur], lowlink[child]);",
+			"                }",
+			"            } else",
+			"                lowlink[cur] = min(lowlink[cur], dfsnum[child]);",
+			"        }",
+			"}"
+		],
+		"description": "tarjan SCC"
 	}
 }
